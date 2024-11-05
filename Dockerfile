@@ -1,7 +1,8 @@
-FROM ubuntu
+FROM debian
 
 RUN apt-get update
-RUN apt-get install -y autoconf gcc libc6 make wget unzip apache2 php libapache2-mod-php8.3 libgd-dev
+RUN apt-get install -y inetutils-ping
+RUN apt-get install -y autoconf gcc libc6 make wget unzip apache2 php libapache2-mod-php* libgd-dev
 RUN apt-get install -y openssl libssl-dev
 RUN cd /tmp \
 	&& wget -O nagioscore.tar.gz https://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.4.14.tar.gz \
@@ -35,3 +36,4 @@ RUN apt install -y vim
 
 COPY start.sh /.
 RUN chmod +x start.sh
+CMD ["/usr/bin/bash", "/start.sh"]
