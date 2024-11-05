@@ -35,4 +35,3 @@ RUN apt install -y vim
 
 COPY start.sh /.
 RUN chmod +x start.sh
-CMD ["/usr/bin/bash", "/start.sh"]
