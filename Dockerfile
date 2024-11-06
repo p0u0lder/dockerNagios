@@ -38,7 +38,7 @@ RUN cd /tmp/nagios-plugins-release-2.4.6/ \
 	&&  make \
 	&& make install
 
-
+ADD objects /usr/local/nagios/etc/objects
 COPY start.sh /.
 RUN chmod +x start.sh
 CMD ["/usr/bin/bash", "/start.sh"]
