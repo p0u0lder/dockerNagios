@@ -39,6 +39,9 @@ RUN cd /tmp/nagios-plugins-release-2.4.6/ \
 	&& make install
 
 ADD objects /usr/local/nagios/etc/objects
+RUN chown -R nagios:nagios /usr/local/nagios/etc/objects/
+COPY nagios.cfg /usr/local/nagios/etc/.
+RUN chown nagios:nagios /usr/local/nagios/etc/nagios.cfg
 COPY start.sh /.
 RUN chmod +x start.sh
 CMD ["/usr/bin/bash", "/start.sh"]
