@@ -38,6 +38,13 @@ RUN cd /tmp/nagios-plugins-release-2.4.6/ \
 	&&  make \
 	&& make install
 
+RUN apt install -y curl host file \
+	&& cd /tmp \
+	&& wget https://github.com/matteocorti/check_ssl_cert/releases/download/v2.84.5/check_ssl_cert-2.84.5.tar.gz \
+	&& tar -xvzf check_ssl_cert-2.84.5.tar.gz \
+	&& cd check_ssl_cert-2.84.5 \
+	&& make DESTDIR=/usr/local/nagios/libexec MANDIR=/usr/local/nagios/plugins install
+
 ADD objects /usr/local/nagios/etc/objects
 RUN chown -R nagios:nagios /usr/local/nagios/etc/objects/
 COPY nagios.cfg /usr/local/nagios/etc/.
